@@ -1,4 +1,5 @@
 site_name: AgXRP Setup & User Guide
+site_url: !ENV [READTHEDOCS_CANONICAL_URL, "https://agxrp.readthedocs.io/"]
 site_description: Complete setup and user guide for the AgXRP plant monitoring kit.
 site_author: AgXRP Team
 
