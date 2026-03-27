@@ -61,7 +61,7 @@ The AgXRP is powered by a **9V barrel jack** power supply (included with the kit
 
 The XRP board has **4 motor ports** for connecting peristaltic pumps. Any of the four ports can be used — which port maps to which pump number is configured in software through the web interface.
 
-1. Connect the motor cable from the pump to motor port number 1. While any of the motors ports can be configure to work, the sofware defaults to port 1.
+1. Connect the motor cable from the pump to motor port number 1. While any of the motor ports can be configured to work, the software defaults to port 1.
 
 ![XRP board with the four motor ports highlighted](images/XRP-Controller-Motors.jpg)
 *XRP board showing the four motor ports*
@@ -85,10 +85,7 @@ The XRP board has **two qwiic connector ports** on the top of the board, labeled
 *XRP board showing qwiic 0 and qwiic 1 ports*
 
 !!! note
-    The board also has **line sensor** and **distance sensor** ports. These are **not used** by the AgXRP and can be ignored.
-
-!!! note
-    Each qwiic port corresponds to an **I2C bus**: qwiic 0 = Bus 0, qwiic 1 = Bus 1. The soil moisture sensor has two qwiic connectors on it — use either one to connect to the board. The second connector on the sensor can be used later to daisy-chain additional sensors (see [Tutorial 3](tutorial-3-additional-sensors-and-pumps.md)).
+    Each qwiic port corresponds to an **I2C bus**: qwiic 0 = Bus 0, qwiic 1 = Bus 1. The soil moisture sensor has two qwiic connectors on it — use either one to connect to the board. The second connector on the sensor can be used later to daisy-chain additional sensors (see [Tutorial 3](tutorial-3-additional-sensors-and-pumps.md)). The board also has **line sensor** and **distance sensor** ports — these are **not used** by the AgXRP and can be ignored.
 
 ---
 

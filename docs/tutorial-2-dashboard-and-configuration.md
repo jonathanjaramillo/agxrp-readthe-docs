@@ -5,6 +5,10 @@ This tutorial explains how to connect to the AgXRP web interface, read sensor da
 !!! note "Before You Begin"
     Make sure you have completed [Tutorial 1 — Kit Contents, Assembly & Wiring](tutorial-1-software-setup.md) and that your AgXRP is powered on.
 
+## What You'll Need
+
+- A phone, tablet, or computer with Wi-Fi and a web browser
+
 ---
 
 ## Connecting to the AgXRP
@@ -328,6 +332,6 @@ Click the green **Download CSV** button above the data table to download the fil
 
 ## Next Steps
 
-- Proceed to [Tutorial 3 — Additional Sensors & Pumps](tutorial-3-additional-sensors-and-pumps.md) if you want to add more sensors or pumps.
-- Proceed to [Tutorial 4 — Pump Calibration](tutorial-4-pump-calibration.md) to prime and test your water pump.
-- Proceed to [Tutorial 5 — Moisture Sensor Calibration](tutorial-5-moisture-sensor-calibration.md) to find the right moisture threshold for your soil.
+- Proceed to [Tutorial 4 — Pump Calibration](tutorial-4-pump-calibration.md) to calibrate your water pump. *(Required for base kit)*
+- Proceed to [Tutorial 5 — Moisture Sensor Calibration](tutorial-5-moisture-sensor-calibration.md) to find the right moisture threshold for your soil. *(Required for base kit)*
+- Proceed to [Tutorial 3 — Additional Sensors & Pumps](tutorial-3-additional-sensors-and-pumps.md) if you want to add more sensors or pumps. *(Optional — expansion only)*

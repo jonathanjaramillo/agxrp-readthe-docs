@@ -16,6 +16,25 @@ This calibration procedure determines the correct **Soil Moisture Threshold** fo
 
 ---
 
+## How Capacitive Soil Sensors Work
+
+The AgXRP uses a **capacitive soil moisture sensor** to measure how much water is in the soil. Unlike older resistive sensors that pass a small electrical current through the soil (which causes the metal probes to corrode over time), a capacitive sensor measures the **electrical capacitance** of the soil around it — no current flows through the soil itself.
+
+The principle relies on the fact that water has a much higher **dielectric permittivity** than dry soil particles or air. In simple terms, water is much better at storing an electric field than air is. The sensor creates an electric field around its probes, and the strength of that field depends on how much water is present in the surrounding soil. The more water there is, the higher the capacitance, and the higher the value reported by the sensor.
+
+The AgXRP dashboard reports this value in **pF (picofarads)**. As a rule of thumb:
+
+- **Higher pF value** = more water in the soil = wetter
+- **Lower pF value** = less water in the soil = drier
+
+This means the automatic watering system triggers when the sensor reading **drops below** the threshold you set — the soil has lost enough water that the reading has fallen to your target level.
+
+Because the relationship between pF readings and actual soil moisture depends on the specific soil mix, pot size, and sensor placement, each setup needs to be calibrated individually. That is what this tutorial covers.
+
+![type:video](https://www.youtube.com/embed/UkJ1cks4ueA?)
+
+---
+
 ## Steps
 
 **Step 1.** Fill a gardening pot to the top with dry potting soil. Note the pot's volume before adding soil — this is usually printed on the pot or can be found from the manufacturer.
@@ -26,7 +45,7 @@ This calibration procedure determines the correct **Soil Moisture Threshold** fo
 
 ---
 
-**Step 3.** Calculate 10% of the pot's volume in milliliters and measure out that amount of water.
+**Step 3.** Calculate 10% of the pot's volume in milliliters and measure out that amount of water. Ten percent represents a well-watered but not waterlogged starting point — enough to give the sensor a meaningful "wet" reading to use as your threshold, without saturating the soil to the point where it would mask normal variation.
 
 !!! info "Unit Conversion"
     **1 cubic inch (in³) = 16.4 mL**
@@ -65,4 +84,8 @@ This calibration procedure determines the correct **Soil Moisture Threshold** fo
 ---
 
 !!! success "Calibration complete!"
-    You are now ready to begin your plant experiment. Proceed to [Tutorial 6 — Plant Experiment](tutorial-6-plant-experiment.md).
+    Your moisture sensor is now calibrated for your specific soil and pot.
+
+## Next Steps
+
+- Proceed to [Tutorial 6 — Plant Experiment](tutorial-6-plant-experiment.md) to plant your seeds and begin your experiment.

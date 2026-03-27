@@ -26,7 +26,7 @@ All sensors daisy-chained from the same qwiic port share the same **I2C bus**:
 
 When you configure each sensor on the Configuration page, you must set the **Bus** field to match which qwiic port that sensor's chain originates from.
 
-![Daisy-chaining sensors from qwiic 0](images/placeholder-daisy-chain.svg)
+![Daisy-chaining sensors from qwiic 0](images/daisy-chain-sensor.jpg)
 *Three sensors daisy-chained from qwiic 0 (all on Bus 0)*
 
 !!! tip
@@ -191,8 +191,8 @@ Here is an example of a fully expanded AgXRP setup with 2 soil sensors, 2 pumps,
 | CO2 Sensor (SCD4x) | Daisy-chained from Soil Sensor 2 | 0 | CO2 Sensor → Enabled, Bus 0 |
 | Light Sensor (VEML) | Daisy-chained from CO2 Sensor | 0 | Light Sensor → Enabled, Bus 0 |
 | OLED Display | Daisy-chained from Soil Sensor 1 | 1 | OLED Screen → Enabled, Bus 1 |
-| Pump 1 | Motor port A | — | Pumps → Index 1 |
-| Pump 2 | Motor port B | — | Pumps → Index 2 |
+| Pump 1 | Motor port 1 | — | Pumps → Index 1 |
+| Pump 2 | Motor port 2 | — | Pumps → Index 2 |
 
 Plant Systems:
 

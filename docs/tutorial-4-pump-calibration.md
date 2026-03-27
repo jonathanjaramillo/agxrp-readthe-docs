@@ -11,7 +11,6 @@ This tutorial explains how peristaltic pumps work, how to calibrate them so the 
 |-----------|----------|-------|
 | Water bottle | 1 per pump | Any bottle that fits in the 3D-printed holder |
 | Silicone tubing | 1 per pump | Included with the pump kit |
-| Funnel | 1 | For priming the tubing |
 | Catch container | 1 | Cup or bowl to catch water during calibration |
 | 3D-printed Velcro bottle holder | 1 per pump | Included with the AgXRP kit |
 
@@ -21,7 +20,7 @@ This tutorial explains how peristaltic pumps work, how to calibrate them so the 
 
 The AgXRP uses **peristaltic pumps** to deliver water to each plant. A peristaltic pump moves liquid by squeezing a flexible tube in a rotating, wave-like motion â€” similar to how your throat muscles move food when you swallow. A set of rollers inside the pump presses against the outside of the silicone tube, and as the motor spins, each roller compresses a small section of the tube and pushes it forward. Because the tube is always squeezed at multiple points, liquid cannot flow backward â€” it can only move in the direction the motor is spinning.
 
-![Priming the tube using a funnel at a sink](images/peristaltic-pump.png)
+![Diagram of a peristaltic pump showing rollers, tubing, and flow direction](images/peristaltic-pump.png)
 
 This design has two big advantages for the AgXRP. First, the liquid only ever contacts the inside of the silicone tube â€” the pump mechanism itself stays dry and clean. Second, the flow rate is very consistent and predictable: for a given motor speed, the pump delivers almost exactly the same volume of water every time it runs.
 
@@ -33,7 +32,7 @@ Once that relationship is established, the AgXRP can calculate how long to run e
 
 ### Priming the Pump
 
-Before a pump can move water, the silicone tube needs to be filled with water â€” this is called **priming**. An un-primed tube contains air, and the pump may struggle to pull water up from the bottle until the air is displaced. It can take a little effort to get flow started for the first time, so don't be discouraged if the pump runs briefly without water coming through. Once the tube is primed and water starts moving, the pump should draw water up from the bottle smoothly and consistently on every subsequent run.
+Before a pump can move water, the air in the silicone tube needs to be displaced. It can take a little effort to get water flowing for the first time, so don't be discouraged if the pump runs briefly without water coming through. Once water starts moving, the pump should draw it up from the bottle smoothly and consistently on every subsequent run.
 
 ---
 
@@ -43,17 +42,7 @@ Before a pump can move water, the silicone tube needs to be filled with water â€
 
 ---
 
-**Step 2.** Prime the tubing by running water through it from end to end (a sink works well). The entire inside of the tube must be wet before inserting it into the pump.
-
-!!! important
-    Its possible that if the tube is not fully primed with water, the motor will not be able to push water through it easily.
-
-![Priming the tube using a funnel at a sink](images/placeholder-missing.svg)
-*Priming the tube using a funnel at a sink*
-
----
-
-**Step 3.** Insert the tube into the AgXRP pump housing.
+**Step 2.** Insert the tube into the AgXRP pump housing.
 
 - Gently lift the gears slightly to create clearance.
 - Press the tube around the inside edge of the pump housing, seating it fully into place.
@@ -64,14 +53,14 @@ Before a pump can move water, the silicone tube needs to be filled with water â€
 
 ---
 
-**Step 4.** Place one end of the tube into the water bottle. Place the other end into a separate container to catch runoff during calibration.
+**Step 3.** Place one end of the tube into the water bottle. Place the other end into a separate container to catch runoff during calibration.
 
-![Inserting the tube into its proper container for calibration](images/placeholder-missing.svg)
-*Inserting the tube into its proper container for calibration*
+![Tube positioned with one end in the water bottle and the other in a catch container](images/placeholder-missing.svg)
+*Tube positioned with one end in the water bottle and the other in a catch container*
 
 ---
 
-**Step 5.** In the AgXRP web interface, set the **Pump Effort** to `0.5` (50% speed is a good starting point for calibration) and click **Start Pump**.
+**Step 4.** In the AgXRP web interface, set the **Pump Effort** to `0.5` (50% speed is a good starting point for calibration) and click **Start Pump**.
 
 - If water flows in the wrong direction, set the **Pump Effort** to a negative value (e.g., `-0.5`) and click **Start Pump** again.
 
@@ -80,7 +69,7 @@ Before a pump can move water, the silicone tube needs to be filled with water â€
 
 ---
 
-**Step 6.** Confirm that water is flowing steadily through the tube and into the catch container.
+**Step 5.** Confirm that water is flowing steadily through the tube and into the catch container.
 
 - Allow the pump to run for **10â€“15 seconds** to verify consistent flow.
 - If the pump struggles to draw water up, tilt the water bottle so water flows more easily toward the tube inlet.
@@ -91,14 +80,31 @@ Before a pump can move water, the silicone tube needs to be filled with water â€
 
 ---
 
-**Step 7.** Once water flows consistently, secure the water bottle in the 3D-printed Velcro holder.
+**Step 6.** Once water flows consistently, secure the water bottle in the 3D-printed Velcro holder.
 
 ---
 
-**Step 8.** If you have additional pumps, repeat all steps above for each pump.
+**Step 7.** If you have additional pumps, repeat all steps above for each pump.
 
 ![Full water pump system set-up (bottle in the 3D-printed Velcro holder)](images/placeholder-missing.svg)
 *Full water pump system set-up (bottle in the 3D-printed Velcro holder)*
+
+---
+
+## Verifying It Works
+
+A correctly functioning pump will pull water steadily up from the bottle and deliver it in a smooth, continuous stream into the catch container. There should be no prolonged air gaps in the tube once flow is established. If you set **Pump Effort** to a positive value, water should travel from the bottle toward the catch container â€” not the other way around.
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Pump runs but no water flows | Air in the tube; pump not yet primed | Let the pump continue running â€” it may take several seconds to pull water up. Tilt the bottle toward the tube inlet to help. |
+| Water flows in the wrong direction | Pump effort sign is incorrect | Set **Pump Effort** to a negative value (e.g., `-0.5`) and try again. |
+| Water leaks outside the tube | Tube not seated properly in the pump housing | Stop the pump, remove the tube, and re-seat it so it is evenly positioned around the inside of the pump housing. |
+| Flow is intermittent or weak | Tube pinched or bottle too far from the pump | Check that the tube is not kinked or compressed anywhere along its length. Lower the bottle to reduce the height the pump must lift water. |
 
 ---
 

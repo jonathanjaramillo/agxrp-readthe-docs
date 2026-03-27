@@ -5,6 +5,15 @@ With your AgXRP system fully set up and calibrated, you are ready to design and 
 !!! note "Before You Begin"
     Make sure you have completed Tutorials 1–5. Your AgXRP system should be wired, the pumps primed, and the moisture sensors calibrated before starting a plant experiment.
 
+## What You'll Need
+
+| Item | Notes |
+|------|-------|
+| Seeds | Wisconsin Fast Plants recommended — see Step 1 |
+| Gardening pots | One per plant system |
+| Potting soil | Already dried and calibrated from Tutorial 5 |
+| Light source | Window, grow light, or outdoor location — see Step 2 |
+
 ---
 
 ## Step 1 — Obtain Seeds
@@ -64,3 +73,15 @@ Get creative! Use additional equipment and tools available to you to explore new
     To conduct a plant experiment that simulates lunar conditions, follow the lesson plans at: `_____________________________`
 
     *(Link to be filled in before distributing this guide.)*
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Seeds not germinating after several days | Seeds too old, too deep, or too dry | Check the supplier's recommended planting depth. Verify the AgXRP is watering correctly by monitoring the Dashboard. |
+| Plant wilting despite automatic watering | Moisture threshold set too low, or pump not delivering enough water | Check the soil moisture reading on the Dashboard. If it isn't rising after a watering cycle, increase **Pump Duration** or check that the pump tube is delivering water directly to the pot. |
+| Soil moisture reading not changing after watering | Sensor not fully inserted, or water not reaching the sensor | Make sure the sensor's sensing area is fully submerged in soil. Check that the pump tube outlet is positioned near the sensor and not draining out the bottom of the pot immediately. |
+| Soil stays wet and never triggers watering | Moisture threshold set too high | Lower the **Soil Moisture Threshold** on the Dashboard. Re-run the calibration in Tutorial 5 if needed. |
+| Pump activates but plant still dries out quickly | Pot drains too fast, or **Pump Duration** too short | Increase **Pump Duration** to deliver more water per cycle, or reduce **Check Interval** so the system waters more frequently. |
