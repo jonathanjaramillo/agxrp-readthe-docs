@@ -194,6 +194,14 @@ The key thing is that the **Sensor Index** and **Pump Index** in the plant syste
 !!! tip "How to Verify the Pairing"
     Go back to the Dashboard and manually start the pump. If the blue LED on your soil sensor turns on, the pairing is correct. If it does not, check that the sensor index and pump index numbers match between the Soil Sensors section, the Pumps section, and the Plant Systems section.
 
+#### Fixing a Sensor/Pump Mismatch
+
+If the wrong pump activates for a given plant (e.g., Sensor 1 is near Plant A but Pump 2 is the one watering it), you have two options:
+
+**Option 1 — Physical swap (easiest):** Unplug the moisture sensor cable and move it to the qwiic port on the same side of the board as the pump that serves that plant. No configuration changes needed.
+
+**Option 2 — Reassign in software:** In the Plant Systems section, change the **Sensor Index** and **Pump Index** values so the correct sensor is paired with the correct pump. For example, if Sensor 1 should control Pump 2, set that plant system to Sensor Index `1` and Pump Index `2`. Click **Save Configuration**, then **Reboot to Apply Changes**.
+
 ---
 
 ### Sensor Update Interval

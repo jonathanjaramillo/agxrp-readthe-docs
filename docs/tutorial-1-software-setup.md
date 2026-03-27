@@ -49,7 +49,7 @@ The AgXRP is powered by a **9V barrel jack** power supply (included with the kit
 1. Plug the barrel jack connector from the power supply into the **barrel jack port** on the XRP board.
 2. Flip the **power switch** to the **ON** position.
 
-![Image 1 — XRP board with barrel jack port and power switch highlighted](images/placeholder-board-power.svg)
+![Image 1 — XRP board with barrel jack port and power switch highlighted](images/XRP-Controller-Power.jpg)
 *Image 1 — XRP board showing the barrel jack port and power switch*
 
 !!! tip
@@ -61,9 +61,9 @@ The AgXRP is powered by a **9V barrel jack** power supply (included with the kit
 
 The XRP board has **4 motor ports** for connecting peristaltic pumps. Any of the four ports can be used — which port maps to which pump number is configured in software through the web interface.
 
-1. Connect the motor cable from the pump to **any** of the four motor ports on the board.
+1. Connect the motor cable from the pump to motor port number 1. While any of the motors ports can be configure to work, the sofware defaults to port 1.
 
-![Image 2 — XRP board with the four motor ports highlighted](images/placeholder-board-motors.svg)
+![Image 2 — XRP board with the four motor ports highlighted](images/XRP-Controller-Motors.jpg)
 *Image 2 — XRP board showing the four motor ports*
 
 !!! tip
@@ -81,7 +81,7 @@ The XRP board has **two qwiic connector ports** on the top of the board, labeled
 1. Connect the qwiic cable from the soil moisture sensor to **either** the **qwiic 0** or **qwiic 1** port on the board.
 2. Remember which port you used — you will need to tell the AgXRP which port the sensor is connected to on the Configuration page (this is called the **I2C bus** number: qwiic 0 = Bus 0, qwiic 1 = Bus 1).
 
-![Image 3 — XRP board with the two qwiic ports highlighted](images/placeholder-board-qwiic.svg)
+![Image 3 — XRP board with the two qwiic ports highlighted](images/XRP-Controller-Qwiic-Connectors.jpg)
 *Image 3 — XRP board showing qwiic 0 and qwiic 1 ports*
 
 !!! note
