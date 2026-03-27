@@ -3,14 +3,14 @@
 This calibration procedure determines the correct **Soil Moisture Threshold** for your specific plant and pot. The threshold tells the automatic watering system when the soil is too dry and needs water. Complete this once before starting any plant experiment.
 
 !!! note "Before You Begin"
-    Make sure your potting soil is completely dry before starting. See [Appendix ii](appendix-ii-soil-drying.md) for instructions on drying soil. You should also have the AgXRP web interface running and accessible (see [Tutorial 2](tutorial-2-dashboard-and-configuration.md)).
+    Make sure your potting soil is completely dry before starting. See [Appendix i](appendix-i-soil-drying.md) for instructions on drying soil. You should also have the AgXRP web interface running and accessible (see [Tutorial 2](tutorial-2-dashboard-and-configuration.md)).
 
 ## What You'll Need
 
 | Component | Quantity | Notes |
 |-----------|----------|-------|
 | Gardening pot | 1 | Know its volume in cubic inches or milliliters |
-| Dry potting soil | Enough to fill the pot | See [Appendix ii](appendix-ii-soil-drying.md) |
+| Dry potting soil | Enough to fill the pot | See [Appendix i](appendix-i-soil-drying.md) |
 | Measuring cup or graduated cylinder | 1 | For measuring water |
 | Moisture sensor (connected to AgXRP) | 1 | Already set up in Tutorial 1 |
 
@@ -41,15 +41,15 @@ This calibration procedure determines the correct **Soil Moisture Threshold** fo
 
 **Step 5.** Insert the moisture sensor back into the soil (at approximately the same depth as before) and record the new moisture reading. This value is your **Soil Moisture Threshold** — the level below which the system should trigger watering.
 
-![Image 23 — Moisture sensor inserted into calibrated soil](images/image11.jpg)
-*Image 23 — Moisture sensor inserted into calibrated soil*
+![Moisture sensor inserted into calibrated soil](images/image11.jpg)
+*Moisture sensor inserted into calibrated soil*
 
 ---
 
 **Step 6.** In the web interface, go to the **Automatic Watering Controller** section on the Dashboard. Enter the value you just recorded in the **Soil Moisture Threshold** field and click **Update Settings**.
 
-![Image 24 — Updating the Soil Moisture Threshold in the web interface](images/image6.jpg)
-*Image 24 — Updating the Soil Moisture Threshold in the web interface*
+![Updating the Soil Moisture Threshold in the web interface](images/image6.jpg)
+*Updating the Soil Moisture Threshold in the web interface*
 
 ---
 

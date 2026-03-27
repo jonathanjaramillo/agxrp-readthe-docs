@@ -55,8 +55,8 @@ Take regular measurements throughout the experiment. Suggested measurements incl
 
 Get creative! Use additional equipment and tools available to you to explore new variables and questions. For example, you could compare plant growth under different watering thresholds, light conditions, or soil types.
 
-![Image 25 — Example AgXRP plant experiment](images/placeholder-missing.svg)
-*Image 25 — Example AgXRP plant experiment*
+![Example AgXRP plant experiment](images/placeholder-missing.svg)
+*Example AgXRP plant experiment*
 
 ---
 

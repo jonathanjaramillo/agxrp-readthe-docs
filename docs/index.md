@@ -14,5 +14,4 @@ Welcome to the AgXRP Setup & User Guide. This documentation will walk you throug
 | [Tutorial 4](tutorial-4-pump-calibration.md) | Pump Calibration |
 | [Tutorial 5](tutorial-5-moisture-sensor-calibration.md) | Moisture Sensor Calibration |
 | [Tutorial 6](tutorial-6-plant-experiment.md) | Running Your Plant Experiment |
-| [Appendix i](appendix-i-sensor-pump-configuration.md) | Sensor & Pump Configuration Reference |
-| [Appendix ii](appendix-ii-soil-drying.md) | Soil Drying Steps |
+| [Appendix i](appendix-i-soil-drying.md) | Soil Drying Steps |

@@ -26,8 +26,8 @@ All sensors daisy-chained from the same qwiic port share the same **I2C bus**:
 
 When you configure each sensor on the Configuration page, you must set the **Bus** field to match which qwiic port that sensor's chain originates from.
 
-![Image 1 — Daisy-chaining sensors from qwiic 0](images/placeholder-daisy-chain.svg)
-*Image 1 — Three sensors daisy-chained from qwiic 0 (all on Bus 0)*
+![Daisy-chaining sensors from qwiic 0](images/placeholder-daisy-chain.svg)
+*Three sensors daisy-chained from qwiic 0 (all on Bus 0)*
 
 !!! tip
     You can split sensors across both buses. For example, put soil sensors on Bus 1 and environmental sensors (CO2, light) on Bus 0. This can improve reliability when you have many sensors.

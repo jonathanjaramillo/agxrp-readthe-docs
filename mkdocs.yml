@@ -35,8 +35,7 @@ nav:
     - Tutorial 5 — Moisture Sensor Calibration: tutorial-5-moisture-sensor-calibration.md
     - Tutorial 6 — Plant Experiment: tutorial-6-plant-experiment.md
   - Appendix:
-    - Appendix i — Sensor & Pump Configuration: appendix-i-sensor-pump-configuration.md
-    - Appendix ii — Soil Drying Steps: appendix-ii-soil-drying.md
+    - Appendix i — Soil Drying Steps: appendix-i-soil-drying.md
 
 extra_css:
   - stylesheets/extra.css

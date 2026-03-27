@@ -49,8 +49,8 @@ The AgXRP is powered by a **9V barrel jack** power supply (included with the kit
 1. Plug the barrel jack connector from the power supply into the **barrel jack port** on the XRP board.
 2. Flip the **power switch** to the **ON** position.
 
-![Image 1 — XRP board with barrel jack port and power switch highlighted](images/XRP-Controller-Power.jpg)
-*Image 1 — XRP board showing the barrel jack port and power switch*
+![XRP board with barrel jack port and power switch highlighted](images/XRP-Controller-Power.jpg)
+*XRP board showing the barrel jack port and power switch*
 
 !!! tip
     The power switch is a small sliding switch near the barrel jack. When the switch is in the ON position, the board will boot up and the web server will start automatically.
@@ -63,8 +63,8 @@ The XRP board has **4 motor ports** for connecting peristaltic pumps. Any of the
 
 1. Connect the motor cable from the pump to motor port number 1. While any of the motors ports can be configure to work, the sofware defaults to port 1.
 
-![Image 2 — XRP board with the four motor ports highlighted](images/XRP-Controller-Motors.jpg)
-*Image 2 — XRP board showing the four motor ports*
+![XRP board with the four motor ports highlighted](images/XRP-Controller-Motors.jpg)
+*XRP board showing the four motor ports*
 
 !!! tip
     Make sure the pins on the wire connector align with the holes in the port before pressing in. Do not force the connector — it should slide in smoothly.
@@ -81,8 +81,8 @@ The XRP board has **two qwiic connector ports** on the top of the board, labeled
 1. Connect the qwiic cable from the soil moisture sensor to **either** the **qwiic 0** or **qwiic 1** port on the board.
 2. Remember which port you used — you will need to tell the AgXRP which port the sensor is connected to on the Configuration page (this is called the **I2C bus** number: qwiic 0 = Bus 0, qwiic 1 = Bus 1).
 
-![Image 3 — XRP board with the two qwiic ports highlighted](images/XRP-Controller-Qwiic-Connectors.jpg)
-*Image 3 — XRP board showing qwiic 0 and qwiic 1 ports*
+![XRP board with the two qwiic ports highlighted](images/XRP-Controller-Qwiic-Connectors.jpg)
+*XRP board showing qwiic 0 and qwiic 1 ports*
 
 !!! note
     The board also has **line sensor** and **distance sensor** ports. These are **not used** by the AgXRP and can be ignored.
