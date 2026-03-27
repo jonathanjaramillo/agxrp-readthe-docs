@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300">
+  <rect width="600" height="300" fill="#f0f0f0" stroke="#cccccc" stroke-width="2" rx="8"/>
+  <rect x="10" y="10" width="580" height="280" fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="8,4" rx="6"/>
+  <text x="300" y="120" font-family="Arial, sans-serif" font-size="48" fill="#cccccc" text-anchor="middle">📷</text>
+  <text x="300" y="170" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#999999" text-anchor="middle">Image Coming Soon</text>
+  <text x="300" y="200" font-family="Arial, sans-serif" font-size="14" fill="#aaaaaa" text-anchor="middle">This image has not yet been added to the guide.</text>
+</svg>

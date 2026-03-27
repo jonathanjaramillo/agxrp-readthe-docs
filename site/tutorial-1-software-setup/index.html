@@ -1,0 +1,1004 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete setup and user guide for the AgXRP plant monitoring kit.">
+      
+      
+        <meta name="author" content="AgXRP Team">
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../tutorial-2-pump-calibration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Tutorial 1 — Software Setup - AgXRP Setup & User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tutorial-1-software-setup-web-server-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AgXRP Setup &amp; User Guide" class="md-header__button md-logo" aria-label="AgXRP Setup & User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgXRP Setup & User Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tutorial 1 — Software Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial 1 — Software Setup
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorial-2-pump-calibration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial 2 — Pump Calibration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorial-3-moisture-sensor-calibration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial 3 — Moisture Sensor Calibration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorial-4-plant-experiment/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial 4 — Plant Experiment
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../appendix-i-sensor-pump-configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Appendix i — Sensor & Pump Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../appendix-ii-soil-drying/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Appendix ii — Soil Drying Steps
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AgXRP Setup &amp; User Guide" class="md-nav__button md-logo" aria-label="AgXRP Setup & User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgXRP Setup & User Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 1 — Software Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 1 — Software Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-hardware-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1 — Hardware Wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-uploading-code-to-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2 — Uploading Code to the Board
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-connecting-to-the-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3 — Connecting to the Web Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3 — Connecting to the Web Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launching-the-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launching the Web Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-server-interface-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Server Interface Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Server Interface Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sensor-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Sensor Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-water-pump-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Water Pump Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-automatic-watering-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Automatic Watering Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-enablingdisabling-automatic-watering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enabling/Disabling Automatic Watering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial-2-pump-calibration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 2 — Pump Calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial-3-moisture-sensor-calibration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 3 — Moisture Sensor Calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial-4-plant-experiment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 4 — Plant Experiment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix-i-sensor-pump-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix i — Sensor & Pump Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix-ii-soil-drying/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix ii — Soil Drying Steps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tutorial-1-software-setup-web-server-configuration">Tutorial 1 — Software Setup &amp; Web Server Configuration</h1>
+<p>This tutorial walks you through wiring the AgXRP hardware, uploading the code to the board, and connecting to the web-based user interface. Complete the parts in order.</p>
+<hr />
+<h2 id="part-1-hardware-wiring">Part 1 — Hardware Wiring</h2>
+<p>Before connecting any wires, make sure the board is <strong>not connected to power or USB</strong>.</p>
+<p><strong>Step 1.</strong> Mount the XRP board into the CONTROL BOARD housing.</p>
+<ul>
+<li>Hold the spring mechanism open, then lower the board in, aligning its corners with the indent guides on the 3D-printed housing.</li>
+</ul>
+<p><img alt="Image 1 — XRP control board placement into the housing mount" src="../images/placeholder-missing.svg" />
+<em>Image 1 — XRP control board placement into the housing mount</em></p>
+<hr />
+<p><strong>Step 2.</strong> Connect the pump wires.</p>
+<ul>
+<li>Connect a wire from the <strong>MotorR</strong> port to one pump.</li>
+<li>Connect a wire from the <strong>MotorL</strong> port to the other pump.<ul>
+<li>Make sure the pins on the wire connector align with the holes in the port before pressing in.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Image 2 — Wire connections: MotorR and MotorL ports with pump wires attached" src="../images/placeholder-missing.svg" />
+<em>Image 2 — Wire connections: MotorR and MotorL ports with pump wires attached</em></p>
+<hr />
+<p><strong>Step 3.</strong> Connect the moisture sensor wires.</p>
+<ul>
+<li>Connect a wire from the <strong>qwiic 0</strong> port to the left input of one moisture sensor.</li>
+<li>Connect a wire from the <strong>qwiic 1</strong> port to the left input of the other moisture sensor.</li>
+</ul>
+<p><img alt="Image 3 — Wire connections: qwiic 0 and qwiic 1 ports with moisture sensor wires attached" src="../images/placeholder-missing.svg" />
+<em>Image 3 — Wire connections: qwiic 0 and qwiic 1 ports with moisture sensor wires attached</em></p>
+<hr />
+<p><strong>Step 4.</strong> Connect the board to the power supply.</p>
+<p><strong>Step 5.</strong> Using a USB-C cable, connect the board to your computer.</p>
+<ul>
+<li>If a pop-up asks "Allow Accessory," select <strong>Yes</strong>.</li>
+</ul>
+<p><img alt="Image 4 — Power supply (blue) and USB-C cord (red) connections" src="../images/image32.png" />
+<em>Image 4 — Power supply (blue) and USB-C cord (red) connections</em></p>
+<hr />
+<h2 id="part-2-uploading-code-to-the-board">Part 2 — Uploading Code to the Board</h2>
+<p>Before you begin, make sure you have downloaded and unzipped the project files.</p>
+<p><strong>Step 1.</strong> Download and unzip the <code>two_pump_setup</code> folder from: <code>_____________________</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Author Note</p>
+<p>The download link for <code>two_pump_setup</code> has been left blank intentionally. Fill in the URL or shared drive path before distributing this guide.</p>
+</div>
+<p><strong>Step 2.</strong> Open XRPCode in your browser: <a href="https://xrp-code-d-u01.wpi.edu/">https://xrp-code-d-u01.wpi.edu/</a></p>
+<p><strong>Step 3.</strong> Click <strong>CONNECT XRP</strong> in the top-right corner of the XRPCode website.</p>
+<ul>
+<li>Select <strong>CONNECT VIA USB</strong>.</li>
+<li>Click the XRP board that appears in the pop-up list.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If no board appears in the list, toggle the power switch on the board off and back on, then try again.</p>
+</div>
+<p><img alt="Image 5 — XRPCode interface showing the CONNECT XRP button and USB connection pop-up" src="../images/image27.png" />
+<em>Image 5 — XRPCode interface showing the CONNECT XRP button and USB connection pop-up</em></p>
+<hr />
+<p><strong>Step 4.</strong> When prompted, click <strong>Confirm</strong> to update the code library.</p>
+<p><img alt="Image 6 — UPDATE CODE LIBRARY confirmation dialog" src="../images/image29.png" />
+<em>Image 6 — UPDATE CODE LIBRARY confirmation dialog</em></p>
+<hr />
+<p><strong>Step 5.</strong> Create the required folder structure in XRPCode.</p>
+<ul>
+<li>In the file panel, click the folder dropdown icon, then under the Google symbol select <strong>New Folder</strong>.</li>
+<li>Name the folder <code>AgXRPLib</code>.</li>
+<li>Inside <code>AgXRPLib</code>, create two additional folders named <code>qwiic_i2c</code> and <code>qwiic_oled</code>.</li>
+</ul>
+<p><img alt="Image 7a — Creating new folder in XRPCode" src="../images/image24.png" />
+<img alt="Image 7b — Correct folder structure in XRPCode showing AgXRPLib with qwiic_i2c and qwiic_oled subfolders" src="../images/image3.png" />
+<em>Image 7 — Correct folder structure in XRPCode showing AgXRPLib with qwiic_i2c and qwiic_oled subfolders</em></p>
+<hr />
+<p><strong>Step 6.</strong> Upload the project files to XRPCode. Follow each sub-step in order.</p>
+<ul>
+<li><strong>6a.</strong> Go to <strong>File → Upload Files</strong>. Locate your <code>two_pump_setup</code> folder, select <code>AgXRP_WebServer.py</code>, and press Open. In XRPCode, navigate to the root level and click <strong>Upload</strong>.</li>
+<li><strong>6b.</strong> Go to <strong>File → Upload Files</strong>. Inside <code>two_pump_setup/lib/AgXRPLib/qwiic_i2c/</code>, select all files and press Open. In XRPCode, navigate to the <code>qwiic_i2c</code> folder and click <strong>Upload</strong>.</li>
+<li><strong>6c.</strong> Go to <strong>File → Upload Files</strong>. Open the <code>qwiic_oled</code> folder, select all files, and press Open. In XRPCode, navigate to the <code>qwiic_oled</code> folder and click <strong>Upload</strong>.</li>
+<li><strong>6d.</strong> Go to <strong>File → Upload Files</strong>. Select all remaining files inside <code>two_pump_setup/lib/AgXRPLib/</code> (<strong>excluding</strong> those inside <code>qwiic_i2c</code> and <code>qwiic_oled</code>). In XRPCode, navigate to the <code>AgXRPLib</code> folder and click <strong>Upload</strong>.</li>
+</ul>
+<p><img alt="Image 8 — Uploading files to AgXRPLib folder" src="../images/image28.png" />
+<em>Image 8 — Uploading files to AgXRPLib folder</em></p>
+<hr />
+<p><strong>Step 7.</strong> In XRPCode, drag the <code>AgXRPLib</code> folder into the <code>lib</code> folder.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You cannot create the <code>AgXRPLib</code> folder directly inside the <code>lib</code> folder in XRPCode. You must create it at the top level first, then drag it in.</p>
+</div>
+<p><img alt="Image 9 — Dragging AgXRPLib into the lib folder in XRPCode" src="../images/image12.png" />
+<em>Image 9 — Dragging AgXRPLib into the lib folder in XRPCode</em></p>
+<hr />
+<h2 id="part-3-connecting-to-the-web-server">Part 3 — Connecting to the Web Server</h2>
+<p>Once the files are uploaded, you can launch the AgXRP web server and connect to it from any phone or computer.</p>
+<h3 id="launching-the-web-server">Launching the Web Server</h3>
+<p><strong>Step 1.</strong> In XRPCode, double-click <code>AgXRP_WebServer.py</code> to open it.</p>
+<ul>
+<li>If you are using more than one AgXRP kit at the same time, each board must have a unique Wi-Fi network name.<ul>
+<li>On <strong>line 103</strong>, change the <code>ssid</code> value to a unique name (e.g., <code>AgXRP_SensorKit_2</code>).</li>
+</ul>
+</li>
+<li>The default Wi-Fi password is also on <strong>line 103</strong> (<code>sensor123</code>). You may change it if desired.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To add optional sensors (CO2, light intensity, OLED display) or a second watering pump, see <a href="../appendix-i-sensor-pump-configuration/">Appendix i</a>. Any code changes must be made before pressing RUN.</p>
+</div>
+<p><img alt="Image 10 — ssid Wi-Fi network name and password (line 103)" src="../images/image26.png" />
+<em>Image 10 — ssid Wi-Fi network name and password (line 103)</em></p>
+<hr />
+<p><strong>Step 2.</strong> Click <strong>RUN</strong> in the top-right corner of XRPCode. Confirmation text should appear at the bottom of the screen indicating the server is running.</p>
+<p><img alt="Image 11 — XRPCode RUN button" src="../images/image1.png" />
+<em>Image 11 — XRPCode RUN button</em></p>
+<hr />
+<p><strong>Step 3.</strong> On a phone, computer, or internet-connected device open Wi-Fi settings and connect to the network name you set in Step 1.</p>
+<ul>
+<li>The AgXRP user interface should open automatically in your browser.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If the interface does not open automatically, open a browser and go to: <strong>192.168.4.1</strong></p>
+</div>
+<p><img alt="Image 12 — AgXRP web interface as seen on a phone or computer browser" src="../images/image2.png" />
+<em>Image 12 — AgXRP web interface as seen on a phone or computer browser</em></p>
+<hr />
+<h2 id="web-server-interface-guide">Web Server Interface Guide</h2>
+<p>The AgXRP web interface is divided into three main sections. Only the sensors and pumps you have connected will appear on the page.</p>
+<h3 id="1-sensor-data">1. Sensor Data</h3>
+<ul>
+<li><strong>Soil Moisture Sensor</strong> — Displays the current moisture level as a voltage percentage.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Author Note</p>
+<p>CO2 and Light sensor descriptions are still blank in the source document. Please add units and expected value ranges for each sensor.</p>
+</div>
+<ul>
+<li><strong>CO2 Sensor</strong> — Displays carbon dioxide concentration. <em>(Units and range: see author note above)</em></li>
+<li><strong>Light Sensor</strong> — Displays ambient light level. <em>(Units and range: see author note above)</em></li>
+</ul>
+<p><img alt="Image 13 — Sensor Data section of the web interface" src="../images/image7.jpg" />
+<em>Image 13 — Sensor Data section of the web interface</em></p>
+<hr />
+<h3 id="2-water-pump-controls">2. Water Pump Controls</h3>
+<p>Use this section to manually operate the pumps.</p>
+<ul>
+<li><strong>Pump Effort</strong> — Enter a value between <strong>-1.0</strong> and <strong>1.0</strong> to control motor speed.<ul>
+<li><code>0.0</code> = stopped | <code>1.0</code> = 100% forward speed</li>
+<li>Negative values reverse the motor direction. Use this only if water is flowing the wrong way.</li>
+</ul>
+</li>
+<li><strong>Start Pump 1</strong> — Click the blue button to begin pumping water.</li>
+<li><strong>Stop Pump 1</strong> — Click the red button to stop pumping water.</li>
+</ul>
+<p><img alt="Image 14 — Water Pump Controls section of the web interface" src="../images/image8.jpg" />
+<em>Image 14 — Water Pump Controls section of the web interface</em></p>
+<hr />
+<h3 id="3-automatic-watering-controller">3. Automatic Watering Controller</h3>
+<p>Use this section to set up a hands-free, automated watering schedule. Each moisture sensor and pump pair functions as one <strong>Plant System</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Check Interval (minutes)</strong></td>
+<td>How often the system checks soil moisture before deciding whether to water.</td>
+</tr>
+<tr>
+<td><strong>Soil Moisture Threshold (%)</strong></td>
+<td>If the moisture reading falls below this value, the pump activates. Calibrate this using <a href="../tutorial-3-moisture-sensor-calibration/">Tutorial 3</a>.</td>
+</tr>
+<tr>
+<td><strong>Pump Duration (seconds)</strong></td>
+<td>How long the pump runs each time it is triggered.</td>
+</tr>
+<tr>
+<td><strong>Pump Effort (-1.0 to 1.0)</strong></td>
+<td>Controls motor speed during automatic watering. See Water Pump Controls for value explanations.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Image 15 — Automatic Watering Controller section of the web interface" src="../images/image6.jpg" />
+<em>Image 15 — Automatic Watering Controller section of the web interface</em></p>
+<hr />
+<h3 id="4-enablingdisabling-automatic-watering">4. Enabling/Disabling Automatic Watering</h3>
+<ul>
+<li>Click <strong>Enabled</strong> to activate autonomous watering.</li>
+<li>Click <strong>Disabled</strong> to turn off autonomous watering.</li>
+<li>After changing any settings, always click <strong>Update Settings</strong> to save them.</li>
+</ul>
+<p><img alt="Image 16 — Automatic Watering Controller section showing the Enable/Disable toggle and Update Settings button" src="../images/image6.jpg" />
+<em>Image 16 — Automatic Watering Controller section showing the Enable/Disable toggle and Update Settings button</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To determine which moisture sensor is Sensor 1 vs. Sensor 2, hold each sensor in your hand and watch which reading changes on the web interface. Similarly, click Start Pump to identify Pump 1 vs. Pump 2. If the sensor and pump numbers do not match your plant setup, see <a href="../appendix-i-sensor-pump-configuration/">Appendix i</a> for instructions on reassigning them in the code.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

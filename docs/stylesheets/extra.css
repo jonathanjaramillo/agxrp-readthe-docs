@@ -1,0 +1,7 @@
+/* Make images block-level so captions appear below, not beside */
+.md-content img {
+  display: block;
+  max-width: 600px;
+  max-height: 450px;
+  height: auto;
+}

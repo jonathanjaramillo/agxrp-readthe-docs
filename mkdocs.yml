@@ -1,0 +1,52 @@
+site_name: AgXRP Setup & User Guide
+site_description: Complete setup and user guide for the AgXRP plant monitoring kit.
+site_author: AgXRP Team
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: green
+      accent: light-green
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: green
+      accent: light-green
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.annotate
+
+nav:
+  - Home: index.md
+  - Tutorials:
+    - Tutorial 1 — Kit Contents, Assembly & Wiring: tutorial-1-software-setup.md
+    - Tutorial 2 — Dashboard & Configuration: tutorial-2-dashboard-and-configuration.md
+    - Tutorial 3 — Additional Sensors & Pumps: tutorial-3-additional-sensors-and-pumps.md
+    - Tutorial 4 — Pump Calibration: tutorial-4-pump-calibration.md
+    - Tutorial 5 — Moisture Sensor Calibration: tutorial-5-moisture-sensor-calibration.md
+    - Tutorial 6 — Plant Experiment: tutorial-6-plant-experiment.md
+  - Appendix:
+    - Appendix i — Sensor & Pump Configuration: appendix-i-sensor-pump-configuration.md
+    - Appendix ii — Soil Drying Steps: appendix-ii-soil-drying.md
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
