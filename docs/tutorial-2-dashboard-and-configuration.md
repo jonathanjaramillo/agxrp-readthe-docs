@@ -1,332 +1,435 @@
-# Tutorial 2 — Dashboard & Configuration
+# Tutorial 2 — How the AgXRP Works
 
-This tutorial explains how to connect to the AgXRP web interface, read sensor data, control the water pump, set up automatic watering, and configure your device. This tutorial assumes you have one capacitive soil moisture sensor and one pump connected (the base kit). Adding more sensors and pumps is covered in [Tutorial 3](tutorial-3-additional-sensors-and-pumps.md).
+This tutorial explains how the AgXRP system works as a whole: how it communicates wirelessly, how sensors and devices connect, how pumps are controlled, and how data is recorded over time. By the end, you will have a clear mental model of every major part of the system and know how to configure each one.
 
 !!! note "Before You Begin"
     Make sure you have completed [Tutorial 1 — Kit Contents, Assembly & Wiring](tutorial-1-software-setup.md) and that your AgXRP is powered on.
 
-## What You'll Need
+---
 
-- A phone, tablet, or computer with Wi-Fi and a web browser
+## How It All Fits Together
+
+Before diving into the details, here is the big picture. The AgXRP is a self-contained plant monitoring and automatic watering system built around the XRP microcontroller board. Think of it as a small computer dedicated entirely to watching your plants and keeping them watered.
+
+The system has four main parts that all work together:
+
+- **The XRP board** — the brain of the system. It reads sensors, controls pumps, hosts a website, and logs data.
+- **Sensors** — devices that plug into the board and measure things like soil moisture. The board reads them continuously and reports their values.
+- **Pumps** — small motors that push water through a tube to your plants. The board can run them automatically or let you control them manually.
+- **The web interface** — a website hosted by the board itself. You connect to it from your phone, tablet, or laptop to see sensor data, control pumps, and change settings.
+
+![Diagram showing the XRP board connected to a soil sensor, a water pump, and a phone via Wi-Fi](images/system-overview-diagram.jpg)
+*The AgXRP system: the XRP board connects to sensors and pumps directly, and communicates with your devices over Wi-Fi.*
+
+Everything in this tutorial builds on this picture. When you understand how each piece fits in, the rest of the details fall into place.
 
 ---
 
-## Connecting to the AgXRP
+## Wi-Fi
 
-**Step 1.** On your phone, tablet, or computer, open your Wi-Fi settings and connect to the AgXRP network:
+### How the AgXRP Creates Its Own Network
+
+The XRP board has a built-in Wi-Fi radio. Rather than connecting to your home or school Wi-Fi network, the AgXRP creates its own dedicated Wi-Fi network — called a **hotspot** or **access point** — that your phone, tablet, or laptop can connect to directly.
+
+This is an important concept: the AgXRP is not on the internet. It is its own private network. When you connect your device to the AgXRP's Wi-Fi, your device and the board are the only things on that network.
+
+The default network name and password are:
 
 - **Network name (SSID):** `AgXRP_SensorKit`
 - **Password:** `sensor123`
 
-**Step 2.** A web page should open automatically in your browser. If it does not, open a browser and go to: **http://192.168.4.1**
+### Connecting for the First Time
 
-!!! note
-    While connected to the AgXRP Wi-Fi network, your device will not have regular internet access. This is expected — the AgXRP creates its own local network for communication with the board.
+1. Power on your AgXRP and wait about 15 seconds for it to finish starting up.
+2. On your phone, tablet, or laptop, open your Wi-Fi settings.
+3. Look for the network named `AgXRP_SensorKit` and connect to it using the password `sensor123`.
+4. Open a web browser and go to: **http://192.168.4.1**
 
----
+The AgXRP dashboard should load in your browser.
 
-## The Dashboard
+!!! note "No Internet While Connected"
+    While your device is connected to the AgXRP's Wi-Fi network, it will not have access to the internet. This is expected — the AgXRP creates its own local network and does not connect to the broader internet. To get internet access back, simply switch your device back to your regular Wi-Fi network.
 
-The Dashboard is the home page of the AgXRP web interface. It is divided into three sections: sensor data at the top, manual pump controls in the middle, and the automatic watering controller at the bottom.
+!!! tip "The Page May Open Automatically"
+    On some phones and tablets, a browser window will pop up automatically when you join a new Wi-Fi network. If that happens, you are already on the right page. If it does not, just open your browser and type in the address above.
 
-At the top of the page you will see navigation links to switch between pages: **Dashboard**, **Data**, and **Configure**.
+### The Three Pages of the Web Interface
 
----
+Once you are connected, the AgXRP web interface has three pages. You can switch between them using the navigation links at the top of any page.
 
-### Sensor Data
+| Page | Address | What It Does |
+|------|---------|--------------|
+| **Dashboard** | `http://192.168.4.1` | Shows live sensor readings, manual pump controls, and the automatic watering controller. This is the main page you will use day-to-day. |
+| **Configure** | `http://192.168.4.1/configure` | Lets you change every setting on the device — sensors, pumps, Wi-Fi, logging, and more. Changes take effect after saving and rebooting. |
+| **Data** | `http://192.168.4.1/data` | Lets you view and download the CSV log files stored on the board. |
 
-The top section of the Dashboard displays live readings from all connected sensors. With the base kit, you will see a **Soil Moisture 1** reading from your capacitive soil sensor, reported in **pF (picofarads)**. The data updates automatically every few seconds.
+![AgXRP dashboard showing the navigation links at the top](images/dashboard-sensor-data.jpg)
+*The top of the Dashboard page. The navigation links to Dashboard, Data, and Configure appear in the header.*
 
-Below the sensor readings, the Dashboard displays a **Date/Time** line and a **Last updated** indicator.
+### Using Multiple AgXRP Kits in the Same Room
 
-![Sensor data section showing soil moisture reading and date/time](images/dashboard-sensor-data.jpg)
-*Sensor data section showing soil moisture reading and date/time*
+Because every AgXRP ships with the same default network name (`AgXRP_SensorKit`), having more than one powered on in the same room will cause a conflict — your device won't know which board to connect to.
 
-#### How Date and Time Works
+The solution is to give each AgXRP a unique network name before running them together. You can do this on the **Configuration page**.
 
-The XRP board does not have a battery-backed clock. Every time the board powers on, the date and time resets to the date the board was manufactured. However, two things can update the clock to the correct time:
+### Changing the Wi-Fi Network Name and Password
 
-1. **Log file recovery** — If you have CSV data logging enabled and data has been written to a log file, the board will set its clock to the most recent date and time found in the log file on boot. This is not perfectly accurate, but it keeps timestamps roughly in order.
-2. **Browser sync** — As soon as a phone, laptop, or tablet connects to the Dashboard in a web browser, the board automatically syncs its clock to the date and time on that device. From that point on, the board's clock is accurate.
+Navigate to **http://192.168.4.1/configure** and find the **Access Point** section near the top of the page.
 
-!!! warning "What Happens During a Power Outage"
-    If the board loses power and restarts, the clock resets. If CSV logging is enabled, the clock will recover to the time of the last log entry — but any data logged between the restart and a browser reconnection will have timestamps from the last known time, not the actual current time. To get accurate timestamps again, simply connect to the Dashboard from any device with a web browser.
+![Access Point configuration section showing SSID and Password fields](images/configure-access-point.jpg)
+*The Access Point section of the Configuration page.*
 
----
-
-### Manual Pump Controls
-
-Below the sensor data, the Dashboard shows manual controls for each water pump.
-
-![Manual pump control section](images/dashboard-manual-pump-control.jpg)
-*Manual pump control section*
-
-The controls work as follows:
-
-- **Pump Effort** — A number between **-1.0** and **1.0** that controls the motor speed.
-    - `1.0` = full forward speed
-    - `0.5` = half speed
-    - `0.0` = stopped
-    - Negative values (e.g., `-1.0`) spin the pump **backwards**. You would only use a negative value if the pump is pushing water in the wrong direction — flip the sign and the water will flow the other way.
-- **Start Pump** (blue button) — Starts the pump at the effort value you entered.
-- **Stop Pump** (red button) — Stops the pump immediately.
-
-!!! tip "Checking That Your Sensor and Pump Are Paired Correctly"
-    When you manually start a pump, the **blue LED** on the soil moisture sensor that is paired with that pump will turn on. If you click Start Pump and the LED on your sensor lights up, the sensor and pump are paired correctly. If the LED does not light up (or the wrong sensor lights up), you need to adjust the sensor and pump index numbers on the Configuration page.
-
----
-
-### Automatic Watering Controller
-
-The bottom section of the Dashboard lets you configure **automatic watering**. Each soil sensor and pump pair forms one **Plant System**. With the base kit, you will have one plant system: Sensor 1 + Pump 1.
-
-![Automatic Watering Controller section](images/dashboard-automatic-water-control.jpg)
-*Automatic Watering Controller section*
-
-#### Controller Fields
-
-| Field | Description |
-|-------|-------------|
-| **Check Interval (hours)** | How often the system checks the soil moisture. For example, `0.5` means it checks every 30 minutes. `1.0` means it checks every hour. |
-| **Soil Moisture Threshold** | The moisture reading (in pF for capacitive sensors) below which the system will trigger the pump. If the sensor reads lower than this value, the soil is considered too dry. |
-| **Pump Duration (seconds)** | How long the pump runs each time it is triggered. |
-| **Pump Effort (-1.0 to 1.0)** | The motor speed used during automatic watering. Typically set to `1.0` for full speed. |
-| **Enable Controller** | Radio buttons to turn automatic watering **Enabled** or **Disabled** for this plant system. |
-
-After changing any of these values, click **Update Settings** to save them. The settings take effect immediately — no reboot is required.
-
-#### How Automatic Watering Works
-
-The automatic watering system uses a simple feedback loop:
-
-1. At the interval you set (e.g., every 30 minutes), the system reads the soil moisture from the sensor.
-2. If the moisture reading is **below the threshold**, the pump activates for the duration you configured.
-3. After the pump runs, the system waits until the next check interval and reads the sensor again.
-4. This repeats continuously, keeping the soil moisture near your target level.
-
-#### Understanding Hysteresis
-
-The controller also has a **hysteresis** setting (configured on the Configuration page). Hysteresis prevents the pump from rapidly cycling on and off when the soil moisture is hovering right around the threshold.
-
-Here is how it works: once the moisture drops **below the threshold**, the system flags that plant as needing water and activates the pump. After watering, the system will **not stop flagging** that plant as needing water until the moisture rises above the **threshold plus the hysteresis value**. This creates a buffer zone that prevents the pump from triggering again immediately if the moisture is only slightly above the threshold after watering.
-
-For example, if your threshold is 300 pF and your hysteresis is 20 pF, the pump will activate when moisture drops below 300 pF, but the system will not consider the plant "watered enough" until the moisture rises above 320 pF.
-
-!!! note
-    Finding the right threshold for your soil and plant takes some experimentation. [Tutorial 5 — Moisture Sensor Calibration](tutorial-5-moisture-sensor-calibration.md) walks you through a calibration procedure to determine the best value for your setup.
-
----
-
-## The Configuration Page
-
-Navigate to **http://192.168.4.1/configure** or click **Configure** in the navigation bar.
-
-If you built and connected the AgXRP according to the instructions in Tutorial 1, **you should not need to change anything on this page** to get started — the defaults are designed for the base kit with one soil sensor and one pump. The two things you might want to change right away are:
-
-- **Wi-Fi password** — if you want something other than `sensor123`.
-- **CSV logging settings** — if you want to record sensor data to a file (see the [CSV Logger](#csv-logger) section below).
-
-The rest of this section explains what each setting does, in the order they appear on the page, so you can come back here when you need to make changes.
-
----
-
-### Access Point (Wi-Fi Settings)
-
-This is the first section on the Configuration page. It lets you change the Wi-Fi network name and password that the AgXRP broadcasts.
-
-| Field | Description |
-|-------|-------------|
-| **SSID** | The Wi-Fi network name the AgXRP broadcasts. Change this if you are using multiple AgXRP kits at the same time — each must have a unique name. |
+| Field | What to Change |
+|-------|----------------|
+| **SSID** | The network name. Change this to something unique if you have multiple kits (e.g., `AgXRP_Bench1`, `AgXRP_Bench2`). |
 | **Password** | The Wi-Fi password. Must be at least 8 characters. |
 
-![Access Point configuration](images/configure-access-point.jpg)
-*Access Point configuration*
+After making changes, scroll to the bottom and click **Save Configuration**, then **Reboot to Apply Changes**. Once the board restarts, reconnect your device to the new network name.
 
 !!! warning
-    If you change the SSID or password, you will need to reconnect to the new network name after the board reboots.
+    After changing the SSID, the old network name will disappear. Make a note of your new name and password before rebooting.
 
 ---
 
-### I2C Bus Configuration
+## Sensors and Devices
 
-The XRP board has two I2C buses for connecting sensors. Each bus corresponds to a physical qwiic port on the board.
+### About Qwiic Sensors and I2C
 
-- **Bus 0** — Corresponds to the **qwiic 0** port on the board.
-- **Bus 1** — Corresponds to the **qwiic 1** port on the board.
+All of the sensors and devices that connect to the AgXRP use a communication standard called **I2C** (pronounced "I-squared-C") over a type of cable called a **Qwiic cable**. You don't need to know the technical details of I2C to use the AgXRP, but understanding one key concept will help you avoid problems: **each device on a shared bus must have a unique address**.
 
-![I2C Bus Configuration section](images/configure-i2c-bus.jpg)
-*I2C Bus Configuration section*
+Here is what that means in practice:
 
-Enable the bus that has a sensor connected to it. If you only have one sensor plugged into one port, you only need that bus enabled. The other can be disabled.
+The XRP board has two Qwiic ports, labeled **Qwiic 0** and **Qwiic 1**. Each port is connected to its own **I2C bus** — think of a bus as a shared communication channel, like a hallway that multiple devices can talk through. Multiple sensors can share the same bus (the same hallway), but each one must have a different "name" (address) so the board knows who it is talking to.
+
+This matters because most sensors come from the factory with a fixed address. If you plug two of the same sensor into the same bus, they both have the same address and the board cannot tell them apart. The solution is simple: **plug each sensor into a different Qwiic port** (one on Bus 0, one on Bus 1), so each one has its own private channel to the board.
+
+![Diagram showing two sensors on separate buses vs. two sensors on the same bus](images/i2c-bus-diagram.jpg)
+*Left: Two sensors on separate buses — works correctly. Right: Two identical sensors on the same bus — causes an address conflict.*
+
+### Enabling the I2C Buses
+
+For the board to communicate with sensors on a given port, that port's bus must be enabled in the configuration. On the **Configuration page**, find the **I2C Bus Configuration** section.
+
+![I2C Bus Configuration section showing Bus 0 and Bus 1 toggles](images/configure-i2c-bus.jpg)
+*The I2C Bus Configuration section. Enable only the buses that have sensors connected.*
+
+- **Bus 0** corresponds to the **Qwiic 0** port.
+- **Bus 1** corresponds to the **Qwiic 1** port.
+
+Enable a bus if you have a sensor or device plugged into that port. If a port is empty, you can leave its bus disabled.
+
+!!! tip
+    The base kit comes with one soil moisture sensor. The default configuration has both buses enabled. As long as the sensor is plugged into either Qwiic port, it should work without any changes here.
+
+### How Sensors Report Data
+
+Once a sensor is connected and its bus is enabled, the board reads it on a regular schedule and displays the latest value on the Dashboard. You can control how often this happens with the **Sensor Update Interval** setting on the Configuration page.
+
+![Sensor Update Interval configuration field](images/configure-sensor-update-period.jpg)
+*The Sensor Update Interval field. Set this to 2 seconds or higher.*
+
+The default is **2 seconds**, which means the Dashboard refreshes with new sensor readings every 2 seconds. Setting this too low (below 1 second) can cause the board to become unresponsive, so keep it at 2 seconds or above for normal use.
+
+### Logging Sensor Data to a File
+
+The AgXRP can write sensor readings to a **CSV file** stored directly on the board. CSV files can be opened in Excel, Google Sheets, or any spreadsheet application, making them ideal for tracking sensor readings over days, weeks, or even a full year of plant experiments.
+
+CSV logging is disabled by default. To turn it on, go to the **Configuration page** and find the **Sensor CSV Logger** section.
+
+![CSV Logger configuration section](images/configure-csv-file.jpg)
+*The CSV Logger configuration section.*
+
+| Field | Description |
+|-------|-------------|
+| **Enabled** | Turn logging on or off. |
+| **Filename** | The name of the log file saved on the board (default: `sensor_log.csv`). |
+| **Period (hours)** | How often a new row is written to the file. `1.0` means once per hour. `0.5` means every 30 minutes. |
+| **Max Rows** | Once this many rows are recorded, the file rotates — the old file is renamed `.bak` and a new one starts. This prevents the file from growing until it fills the board's storage. |
+
+**How often should you log?** The XRP board has limited onboard storage, so logging too frequently will fill it up quickly. Here are some guidelines:
+
+- If you plan to run the AgXRP for **a full year**, log no more than once every **30–60 minutes** (`0.5` to `1.0` hours). Once per hour is a good starting point.
+- If you are running a **short experiment** (a few days to a few weeks), logging every **15 minutes** (`0.25` hours) gives you more detail without filling storage.
+- Logging more than once every **5 minutes** is rarely necessary and will fill storage quickly.
+
+!!! note
+    The pump also has its own separate log file that records every watering event. That is covered in the [Pumps section](#pumps) below.
+
+### Instantaneous vs. Averaged Readings
+
+Each sensor can be configured to log either the **current reading** at the moment of logging, or the **average** of all readings taken since the last log entry.
+
+- **Current reading (default):** Logs exactly what the sensor reads at the moment the log entry is written.
+- **Average over interval:** Logs the mathematical average of all sensor readings taken since the last log entry. This smooths out short-term fluctuations and gives a more stable picture of conditions over time.
+
+For most plant monitoring experiments, the average is more meaningful than a single snapshot — especially if you are logging once per hour.
+
+To configure this, go to the **Configuration page** and find the section for the sensor you want to change. Each sensor has its own **Average over interval** toggle.
+
+![Screenshot showing the "Average over interval" toggle for a sensor](images/configure-sensor-average.jpg)
+*The "Average over interval" toggle on a soil sensor configuration. Set to Enabled to log averaged readings.*
 
 ---
 
-### Controller
+### Capacitive Soil Moisture Sensor
 
-This section lets you enable or disable the automatic watering controller globally. When disabled, no plant systems will water automatically, but you can still control pumps manually from the Dashboard.
+The base kit comes with **one capacitive soil moisture sensor**. This sensor measures how much water is in the soil by detecting tiny changes in electrical capacitance — essentially, it detects how well the soil conducts electricity, which changes as the soil gets wetter or drier. The reading is reported in **pF (picofarads)**, a unit of electrical capacitance.
 
-![Controller enable/disable section](images/configure-controller-enable.jpg)
-*Controller enable/disable section*
+You do not need to understand the physics to use it. What matters is this: **a higher pF reading means wetter soil; a lower pF reading means drier soil.** [Tutorial 5 — Moisture Sensor Calibration](tutorial-5-moisture-sensor-calibration.md) will walk you through finding the right values for your specific soil and plant.
 
----
+#### I2C Address
 
-### Pumps
+Every sensor has a hardware I2C address — a fixed number that identifies it on the bus. The capacitive soil sensor has a default address of `0x37`.
 
-Configure up to 4 water pumps. You will see an entry for Pump 1.
+**You do not need to change this** unless you are running two capacitive soil sensors on the same bus (which you should avoid — use separate buses instead). The I2C address setting is on the Configuration page in the **Soil Sensors** section, and it should stay at `0x37` for the standard base kit setup.
+
+If for some reason you need to use two capacitive soil sensors on the same bus, one of them will need its hardware address changed. This requires physically adjusting a solder jumper on the sensor board and changing the address in the configuration to `0x28`. This is an advanced procedure — contact your instructor or refer to the SparkFun documentation for that sensor.
+
+#### Sensor Index
+
+Each soil sensor is assigned a **Sensor Index** — a number (1, 2, 3, or 4) that the system uses to identify it. This index is how the software knows which sensor goes with which pump in the automatic watering system.
+
+With the base kit and one sensor, **Sensor 1** is the default and you do not need to change it. If you add a second sensor, assign it **Sensor Index 2**.
+
+To configure the sensor index and other soil sensor settings, go to the **Configuration page** and find the **Soil Sensors** section.
+
+![Soil sensor configuration section showing Enabled, Type, Sensor Index, Bus, and Address fields](images/configure-soil-sensor.jpg)
+*The Soil Sensor configuration section. For the base kit, these defaults are correct and do not need to be changed.*
 
 | Field | What to Set | Description |
 |-------|-------------|-------------|
-| **Enabled** | Yes | The pump must be enabled for it to appear on the Dashboard. |
-| **Pump Index** | `1` | This number identifies the pump and is used to pair it with a sensor in the plant system. |
-| **CSV Filename** | `water_pump_1_log.csv` | An optional log file that records every time this pump activates, including the timestamp, duration, and soil moisture at the time. |
-| **Max Duration (seconds)** | `60` | A safety limit — the pump will automatically stop after running this long, even if told to run longer. |
+| **Enabled** | Yes | The sensor must be enabled to appear on the Dashboard. |
+| **Type** | Capacitive | Must match the physical sensor you have plugged in. |
+| **Sensor Index** | `1` | The identifier used to pair this sensor with a pump. |
+| **Bus** | `1` | Set to match the Qwiic port you plugged the sensor into. Qwiic 1 = Bus 1. |
+| **I2C Address** | `0x37` | Leave at the default for the standard capacitive sensor. |
 
-![Pump configuration](images/configure-pump-enable.jpg)
-*Pump configuration*
+#### Using a Different Soil Sensor
 
----
-
-### Plant Systems
-
-This is where you pair a soil sensor with a pump for automatic watering. Each **Plant System** links a sensor index to a pump index and defines the watering rules for that pair.
-
-The key thing is that the **Sensor Index** and **Pump Index** in the plant system must match the index numbers you assigned to the sensor and pump in their respective sections. With the base kit, Sensor 1 is paired with Pump 1.
-
-![Plant System configuration](images/configure-plant-system.jpg)
-*Plant System configuration*
-
-!!! tip "How to Verify the Pairing"
-    Go back to the Dashboard and manually start the pump. If the blue LED on your soil sensor turns on, the pairing is correct. If it does not, check that the sensor index and pump index numbers match between the Soil Sensors section, the Pumps section, and the Plant Systems section.
-
-#### Fixing a Sensor/Pump Mismatch
-
-If the wrong pump activates for a given plant (e.g., Sensor 1 is near Plant A but Pump 2 is the one watering it), you have two options:
-
-**Option 1 — Physical swap (easiest):** Unplug the moisture sensor cable and move it to the qwiic port on the same side of the board as the pump that serves that plant. No configuration changes needed.
-
-**Option 2 — Reassign in software:** In the Plant Systems section, change the **Sensor Index** and **Pump Index** values so the correct sensor is paired with the correct pump. For example, if Sensor 1 should control Pump 2, set that plant system to Sensor Index `1` and Pump Index `2`. Click **Save Configuration**, then **Reboot to Apply Changes**.
+The AgXRP is designed for the capacitive sensor included in the base kit, but it also supports **resistive soil sensors** — a different type of analog soil sensor available from SparkFun. Resistive sensors report moisture as a percentage (0–100%) rather than in picofarads. If you switch to a resistive sensor, change the **Type** field in the soil sensor configuration from "Capacitive" to "Resistive," and be aware that any thresholds you have configured for automatic watering will also need to be updated to match the new unit.
 
 ---
 
-### Sensor Update Interval
+### Additional Sensors
 
-Set how frequently (in seconds) the board reads new data from all sensors and updates the Dashboard. The default is `2` seconds.
+!!! note "These sensors do not come with the base kit"
+    The sensors in this section are optional add-ons that can be purchased separately from SparkFun. If you only have the base kit, you can skip this section for now and come back when you add new hardware.
 
-![Sensor Update Interval configuration](images/configure-sensor-update-period.jpg)
-*Sensor Update Interval configuration*
+The AgXRP supports three types of additional sensors, all of which connect to the Qwiic ports just like the soil sensor.
 
----
+To enable any of these sensors, go to the **Configuration page** and find the section for that sensor type. Enable the sensor and select which bus (Qwiic port) it is connected to.
 
-### Additional Sensors (CO2, Spectral, Light)
+![Additional sensor configuration sections showing CO2, Spectral, and Light options](images/configure-additional-sensors.jpg)
+*The additional sensor sections on the Configuration page. Each one has an Enabled toggle and a Bus selector.*
 
-The AgXRP supports several additional sensor types beyond the soil moisture sensor. With the base kit, you do not need to change any of these settings — they are all disabled by default. These sensor types are for optional accessories covered in [Tutorial 3](tutorial-3-additional-sensors-and-pumps.md).
+#### CO2 Sensor (SCD4x)
 
-The sections that appear here are:
+This sensor measures three things simultaneously: **carbon dioxide concentration** (in parts per million, ppm), **air temperature** (in °C), and **relative humidity** (%). Carbon dioxide levels around plants can be a useful indicator of photosynthesis and respiration activity. Once enabled, temperature, humidity, and CO2 readings will all appear on the Dashboard.
 
-- **CO2 Sensor (SCD4x)** — For measuring carbon dioxide, temperature, and humidity.
-- **Spectral Sensor (AS7343)** — For measuring blue, green, red, and near-infrared light channels.
-- **Light Sensor (VEML)** — For measuring ambient light intensity in lux.
+#### Spectral Sensor (AS7343)
 
-Each has an **Enabled** toggle and a **Bus** selector to indicate which I2C bus the sensor is connected to.
+This sensor measures light broken down into individual color channels: **blue**, **green**, **red**, and **near-infrared (NIR)**. This is useful for studying how different wavelengths of light affect plant growth, since plants primarily use blue and red light for photosynthesis.
 
-![Additional sensor configuration sections](images/configure-additional-sensors.jpg)
-*Additional sensor configuration sections (CO2, Spectral, Light)*
+#### Light Sensor (VEML)
 
----
-
-### Soil Sensors
-
-Configure up to 4 soil moisture sensors. With the base kit, you will see an entry for Soil Sensor 1. Here is what each field means:
-
-| Field | What to Set | Description |
-|-------|-------------|-------------|
-| **Enabled** | Yes | The sensor must be enabled for it to appear on the Dashboard. |
-| **Sensor Index** | `1` | This number is how the sensor is identified on the Dashboard and how it gets paired with a pump in the plant system. |
-| **Bus** | `0` or `1` | Set this to match the qwiic port the sensor is plugged into. If you used **qwiic 0**, set this to **0**. If you used **qwiic 1**, set this to **1**. |
-| **I2C Address** | `0x37` | Leave this at the default. This is the hardware address of the capacitive soil sensor. |
-| **Type** | Capacitive | Must match the physical sensor type. The base kit includes a capacitive sensor. |
-
-![Soil sensor configuration fields](images/configure-soil-sensor.jpg)
-*Soil sensor configuration fields*
+This sensor measures overall **ambient light intensity** in lux — a single number that represents the total brightness of the environment. This is simpler than the spectral sensor and useful when you just need to know how bright it is without caring about specific colors.
 
 ---
 
 ### OLED Screen
 
-Enable this if you have a qwiic-connected OLED display. Select which I2C bus it is connected to. This is an optional accessory not included in the base kit.
+!!! note "The OLED screen does not come with the base kit"
+    An OLED display is an optional accessory available from SparkFun. You do not need one to use the AgXRP.
 
-![OLED Screen configuration](images/configure-oled.jpg)
-*OLED Screen configuration*
+An OLED screen is a small display that you can attach to one of the Qwiic ports. When connected and enabled, it shows live sensor readings directly on the board — no phone, tablet, or laptop required. This is useful when the AgXRP is deployed somewhere where you want a quick at-a-glance readout without pulling out your phone.
+
+To enable the OLED screen, go to the **Configuration page** and find the **OLED Screen** section. Toggle it to **Enabled** and set the **Bus** to match the Qwiic port it is connected to.
+
+![OLED Screen configuration section](images/configure-oled.jpg)
+*The OLED Screen configuration section.*
 
 ---
 
-### CSV Logger
+## Pumps and Water Control
 
-The AgXRP can record sensor data to a CSV file on the board. This is useful for tracking moisture levels and other readings over time.
+### Pumps
+
+#### What Kind of Pump Is It?
+
+The AgXRP uses a **peristaltic pump** — a type of pump that works by squeezing a flexible tube rhythmically, pushing liquid through it in one direction. Peristaltic pumps are ideal for plant watering because they are gentle, self-priming (eventually), and easy to control precisely.
+
+The base kit comes with **one peristaltic pump**. The AgXRP software supports up to **four pumps** total (connected to Motor L, Motor R, Motor 3, and Motor 4 on the XRP board). Additional pumps can be added if you expand your kit.
+
+#### Priming the Pump
+
+When the pump is new or has been sitting unused, the tube may be empty and the pump may need to be **primed** — that is, run long enough to draw water up from the reservoir and through the full length of tubing before water actually comes out at the plant end.
+
+To prime the pump, use the **manual pump controls** on the Dashboard (described in the next section). Run the pump for 10–30 seconds and check whether water is flowing. Repeat until water is consistently flowing out of the tube.
+
+#### Configuring a Pump
+
+Pump settings are found on the **Configuration page** in the **Pumps** section.
+
+![Pump configuration section showing Enabled, CSV Filename, and Max Duration fields](images/configure-pump-enable.jpg)
+*The Pump configuration section. Each pump that is enabled will appear on the Dashboard.*
 
 | Field | Description |
 |-------|-------------|
-| **Enabled** | Turn CSV logging on or off. Disabled by default. |
-| **Filename** | Name of the log file (default: `sensor_log.csv`). |
-| **Period (ms)** | How often a row is written, in milliseconds. `5000` = every 5 seconds. |
-| **Max Rows** | After this many rows, the log file rotates — the old file is renamed with a `.bak` extension and a new file starts. This prevents the log from filling up the board's storage. |
+| **Enabled** | The pump must be enabled to appear on the Dashboard. |
+| **CSV Filename** | The name of the log file for this pump's watering events. Each pump gets its own log file (e.g., `water_pump_1_log.csv`). Leave blank to disable pump logging. |
+| **Max Duration (seconds)** | A safety limit. Even if the automatic controller or a manual command tells the pump to run longer than this, it will stop automatically at this time. This prevents accidental flooding if something goes wrong. The default is 60 seconds. |
 
-![CSV Logger configuration](images/configure-csv-file.jpg)
-*CSV Logger configuration*
+#### Manual Pump Controls on the Dashboard
 
-In addition to the sensor log, each pump also has its own log file (configured in the Pumps section). The pump log records every watering event with the timestamp, how long the pump ran, and the soil moisture at the time of watering.
+The Dashboard has a **Manual Pump Controls** section that lets you run a pump directly from your browser.
 
----
+![Manual pump control section showing effort field, Start Pump and Stop Pump buttons](images/dashboard-manual-pump-control.jpg)
+*The Manual Pump Controls section on the Dashboard.*
 
-### Saving and Applying Changes
+| Control | Description |
+|---------|-------------|
+| **Pump Effort** | A number between `-1.0` and `1.0` that controls the pump's speed and direction. `1.0` = full speed forward. `0.5` = half speed forward. `0.0` = stopped. Negative values (e.g., `-1.0`) run the pump **backwards**, which can be useful if the pump was installed in reverse and is pushing water the wrong way. |
+| **Log this run** | A toggle that controls whether this manual pump run is recorded in the pump's log file. Turn this **off** when priming the pump so that priming runs do not appear in your watering data. Turn it **on** if you want to record a manual watering event. |
+| **Start Pump** | Starts the pump at the effort level you entered. |
+| **Stop Pump** | Stops the pump immediately. |
 
-At the bottom of the Configuration page:
-
-1. Click **Save Configuration** to write your changes to the board.
-2. Click **Reboot to Apply Changes** to restart the board with the new settings.
-3. After the board reboots, reconnect to the AgXRP Wi-Fi network and navigate to **http://192.168.4.1**.
-
-!!! warning
-    The board must reboot for configuration changes to take effect. Any active pumps will be stopped safely before the reboot.
+!!! tip "Verifying That Your Sensor and Pump Are Connected Correctly"
+    When you start a pump manually, the **blue LED** on the soil moisture sensor that is paired with that pump will light up. If the LED on your sensor turns on when you click Start Pump, the sensor and pump are paired correctly. If no LED lights up, or the wrong sensor lights up, check the Plant System configuration (covered in the next section) to make sure the sensor index and pump are paired correctly.
 
 ---
 
-## The Data Page
+### Automatic Water Control
 
-Navigate to **http://192.168.4.1/data** or click **Data** in the navigation bar.
+The **automatic watering system** is what makes the AgXRP truly useful for plant experiments. Rather than watering plants manually on a schedule, the system continuously monitors the soil and waters automatically whenever the soil gets too dry.
 
-![Data Viewer page](images/data-viewer.jpg)
-*Data Viewer page*
+#### What Is a Plant System?
 
-The Data page lets you view and download the CSV log files stored on the board. Two types of log files may be available:
+The automatic watering controller is organized around the concept of a **Plant System**. Each Plant System pairs one soil sensor with one pump. The sensor monitors the soil, and when the reading drops below a threshold you set, the pump runs.
 
-- **Sensor Log** — Contains timestamped readings from all enabled sensors (soil moisture, CO2, light, etc.). This file is only created if you enabled the **CSV Logger** on the Configuration page.
-- **Water Pump Logs** — One file per pump, recording each watering event with the timestamp, duration, and soil moisture at the time of watering. These are created automatically when the pump has a CSV filename configured.
+With the base kit, you have one Plant System: **Soil Sensor 1 paired with Pump 1 (Motor L)**.
 
-### Viewing Data
+An important thing to understand about how pumps are assigned: **the pump in a Plant System is determined by the Plant System's position**, not a number you type in a box. Plant System 1 always controls Pump 1 (Motor L). If you add Plant System 2, it will always control Pump 2 (Motor R), and so on. What you *do* choose is which **soil sensor index** feeds into each Plant System — that is, which sensor the system listens to when deciding whether to water.
 
-Click on a log file name to display its contents in a table. The most recent entries appear at the top.
+#### Configuring Automatic Watering from the Dashboard
 
-### Downloading Data
+The bottom section of the Dashboard lets you configure the automatic watering settings for each Plant System without going to the Configuration page.
 
-Click the green **Download CSV** button above the data table to download the file to your device. You can open it in any spreadsheet application (Excel, Google Sheets, etc.) for further analysis.
+![Automatic Watering Controller section on the Dashboard](images/dashboard-automatic-water-control.jpg)
+*The Automatic Watering Controller section on the Dashboard.*
+
+| Field | Description |
+|-------|-------------|
+| **Check Interval (hours)** | How often the system checks the soil moisture. `0.5` = every 30 minutes. `1.0` = every hour. |
+| **Soil Moisture Threshold** | The moisture level (in pF for capacitive sensors) below which the pump will activate. If the sensor reads lower than this number, the soil is considered too dry. |
+| **Pump Duration (seconds)** | How long the pump runs each time it is triggered. |
+| **Pump Effort (-1.0 to 1.0)** | The motor speed used during automatic watering. Typically `1.0` for full speed. |
+| **Enable Controller** | Enables or disables automatic watering for this Plant System. You can disable it without changing any other settings. |
+
+Click **Update Settings** after making any changes. Settings take effect immediately — no reboot needed.
+
+#### How the Automatic Watering Loop Works
+
+Here is what happens behind the scenes, step by step:
+
+1. At the interval you set (for example, every 30 minutes), the board reads the soil moisture from the paired sensor.
+2. If the moisture reading is **below the threshold**, the system flags that plant as needing water and activates the pump for the duration you configured.
+3. The pump runs, adding water to the soil.
+4. The system waits for the next check interval and reads the sensor again.
+5. This cycle repeats continuously.
+
+#### Understanding Hysteresis
+
+There is one more concept that makes the automatic watering system smarter: **hysteresis**.
+
+Imagine the threshold is set to 300 pF. Without hysteresis, the system might turn the pump on and off rapidly if the soil moisture is hovering right around 300 — one reading is 299 (pump on), the next is 301 (pump off), the next is 298 (pump on again). This rapid cycling is hard on the pump and is not good for the plants.
+
+Hysteresis solves this by creating a **buffer zone**. Once the soil drops below the threshold and the system flags the plant as needing water, it does not stop flagging it as needing water until the moisture rises **above the threshold *plus* the hysteresis value**.
+
+For example, with a threshold of 300 pF and a hysteresis of 20 pF:
+- Pump activates when moisture drops **below 300 pF**
+- Pump stops being triggered only after moisture rises **above 320 pF**
+
+This prevents rapid cycling and ensures the soil gets meaningfully watered before the system considers the job done.
+
+Hysteresis is configured on the **Configuration page** in the **Plant Systems** section.
+
+#### Configuring Plant Systems on the Configuration Page
+
+For more detailed settings, go to the **Configuration page** and find the **Plant Systems** section. This is also where you pair a specific soil sensor to a specific Plant System.
+
+![Plant System configuration section](images/configure-plant-system.jpg)
+*The Plant System configuration section on the Configuration page.*
+
+| Field | Description |
+|-------|-------------|
+| **Enabled** | Enables or disables this Plant System. |
+| **Soil Sensor Index** | Which soil sensor this Plant System listens to. Set this to match the **Sensor Index** you assigned to the soil sensor in the Soil Sensors section. For the base kit, both should be `1`. |
+| **Interval (hours)** | How often to check the soil. Same as Check Interval on the Dashboard. |
+| **Threshold** | Moisture level below which watering is triggered. Same as on the Dashboard. |
+| **Hysteresis** | The buffer above the threshold the moisture must reach before the system stops flagging the plant as needing water. |
+| **Duration (seconds)** | How long the pump runs per watering event. |
+| **Pump Effort (-1.0 to 1.0)** | Speed of the pump during automatic watering. |
+
+!!! tip "How to Verify the Soil Sensor and Pump Are Paired Correctly"
+    After configuring a Plant System, go back to the Dashboard and manually start the pump. If the **blue LED** on the soil sensor that you assigned to that Plant System lights up, the pairing is correct. If the wrong sensor's LED lights up — or no LED lights up at all — double-check that the **Sensor Index** in the Soil Sensors section matches the **Soil Sensor Index** in the Plant Systems section.
+
+#### Enabling the Controller Globally
+
+There is also a global **Controller** toggle on the Configuration page that enables or disables the entire automatic watering system at once. If this is disabled, no Plant Systems will run automatically — even if the individual Plant Systems are set to Enabled.
+
+![Controller enable/disable section on the Configuration page](images/configure-controller-enable.jpg)
+*The global Controller enable/disable toggle. This must be Enabled for any automatic watering to occur.*
+
+This is useful if you want to temporarily pause all automatic watering without changing your individual Plant System settings.
+
+!!! warning "Save and Reboot After Changing Configuration"
+    Changes made on the **Configuration page** (including Plant System settings) require a save and reboot to take effect. Changes made directly on the **Dashboard** (Check Interval, Threshold, Duration, Effort, and Enable/Disable) take effect immediately without a reboot.
+
+---
+
+## Data and Timestamps
+
+### The Data Page
+
+The Data page lets you view and download the log files stored on the board. Navigate to **http://192.168.4.1/data** or click **Data** in the navigation bar.
+
+![Data Viewer page showing a list of log files and a data table](images/data-viewer.jpg)
+*The Data Viewer page. Click a filename to load and view its data.*
+
+Two types of log files may be available:
+
+- **Sensor Log** (`sensor_log.csv` by default) — Contains timestamped readings from all enabled sensors. This file is only created if you enabled the CSV Logger on the Configuration page.
+- **Pump Logs** (e.g., `water_pump_1_log.csv`) — One file per pump, recording each watering event. Each row includes the timestamp, how long the pump ran, and the soil moisture reading at the time of watering.
+
+Click a filename to display its contents as a table in your browser. The most recent entries appear at the top. Click the green **Download CSV** button to save the file to your device, where you can open it in Excel or Google Sheets for further analysis.
 
 !!! note
-    If no log files appear, make sure CSV logging is enabled on the Configuration page and that the board has been running long enough to collect data.
+    If no log files appear, make sure CSV logging is enabled on the Configuration page and that the board has been running long enough to collect some data.
 
----
+### How Timestamps Work
 
-## Troubleshooting
+Every row in a log file is stamped with the date and time it was recorded. But the XRP board does not have a battery-backed clock — meaning every time it loses power and restarts, its clock resets to a default date.
 
-| Symptom | Likely Cause | Fix |
-|---------|-------------|-----|
-| Board does not appear as a Wi-Fi network | Board is not powered on, or firmware is missing | Check that the power supply is connected and the power switch is ON. If the network still does not appear, the firmware may need to be reflashed — see [Tutorial 1](tutorial-1-software-setup.md#reflashing-the-firmware-if-needed). |
-| Cannot connect to the Wi-Fi network | Wrong password | The default password is `sensor123`. If you changed the password and forgot it, reflash the firmware to reset to defaults. |
-| Web page does not load | Browser not navigating to correct address | Go to **http://192.168.4.1** manually. Make sure you are still connected to the AgXRP Wi-Fi. |
-| Soil sensor does not appear on Dashboard | Sensor not enabled or wrong bus | Go to Configuration, check that the soil sensor is enabled and the bus number matches the qwiic port you used. Save and reboot. |
-| Pump does not respond | Pump not enabled or wrong index | Go to Configuration, check that the pump is enabled. Also check that the motor cable is firmly connected. |
-| Blue LED does not light up when pump starts | Sensor/pump pairing mismatch | Make sure the sensor index and pump index match in the Soil Sensors, Pumps, and Plant Systems sections of the Configuration page. |
-| Timestamps are wrong after a power outage | Clock reset on reboot | Connect to the Dashboard from any device with a web browser — the clock will automatically sync. |
+The AgXRP uses two methods to recover the correct time:
+
+**1. Browser sync (most accurate)**
+As soon as any phone, tablet, or laptop connects to the Dashboard in a web browser, the board automatically syncs its clock to the date and time on that device. From that moment forward, all new log entries will have accurate timestamps. This is the primary method and it happens automatically — you do not need to do anything.
+
+**2. Log file recovery (approximate)**
+If the board restarts and no browser has connected yet, the system looks through any existing log files for the most recent timestamp and sets its clock to that time. This is not perfectly accurate — it only tells the board what time it was the last time something was logged — but it keeps timestamps roughly in order until a browser syncs the clock properly.
+
+#### What Happens During a Power Outage
+
+!!! warning "Power Outages and Timestamps"
+    If your AgXRP loses power and restarts, its clock resets. Here is what to expect:
+
+    1. If CSV logging is enabled, the board will try to recover the time from the last log entry — but this may be hours behind the actual current time.
+    2. Any data logged between the restart and your first browser connection will have timestamps based on the recovered (approximate) time, not the actual current time.
+    3. Once you connect to the Dashboard from any device with a browser, the clock syncs immediately and all future log entries will have accurate timestamps.
+
+    **The fix is simple:** after any power outage, open the Dashboard in your browser as soon as possible. The clock will sync automatically.
+
+    If timestamp accuracy is critical for your experiment, consider connecting to the Dashboard briefly each day, or whenever the board restarts after a power interruption.
 
 ---
 
